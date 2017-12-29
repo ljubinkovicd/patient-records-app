@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F36EFA41FF5903A0070A7D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F36EFA31FF5903A0070A7D7 /* AppDelegate.swift */; };
-		0F36EFA61FF5903A0070A7D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F36EFA51FF5903A0070A7D7 /* ViewController.swift */; };
 		0F36EFA91FF5903A0070A7D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F36EFA71FF5903A0070A7D7 /* Main.storyboard */; };
 		0F36EFAE1FF5903A0070A7D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F36EFAC1FF5903A0070A7D7 /* LaunchScreen.storyboard */; };
 		0F7F4D851FF6317500EE26B9 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D841FF6317500EE26B9 /* Patient.swift */; };
@@ -21,14 +20,26 @@
 		0F7F4D941FF669CE00EE26B9 /* AddPatientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D931FF669CE00EE26B9 /* AddPatientController.swift */; };
 		0F7F4D961FF67A7500EE26B9 /* PatientResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D951FF67A7500EE26B9 /* PatientResult.swift */; };
 		0F7F4D9A1FF6858000EE26B9 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D991FF6858000EE26B9 /* DataModel.swift */; };
+		0F7F4DA21FF6959E00EE26B9 /* InterviewProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4DA11FF6959E00EE26B9 /* InterviewProjectTests.swift */; };
+		0F9BBC6E1FF69D370019E2CB /* FlipPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9BBC6D1FF69D370019E2CB /* FlipPresentAnimationController.swift */; };
+		0F9BBC711FF69DD20019E2CB /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9BBC701FF69DD20019E2CB /* AnimationHelper.swift */; };
 		0F9E38FF1FF5947100CD343C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E38FE1FF5947100CD343C /* Constants.swift */; };
 		16BE9D9B3EB1B5E326785EE4 /* Pods_InterviewProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BFD3CEAD296E47E6C3F864 /* Pods_InterviewProject.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0F7F4DA41FF6959E00EE26B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F36EF981FF5903A0070A7D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F36EF9F1FF5903A0070A7D7;
+			remoteInfo = InterviewProject;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0F36EFA01FF5903A0070A7D7 /* InterviewProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F36EFA31FF5903A0070A7D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0F36EFA51FF5903A0070A7D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0F36EFA81FF5903A0070A7D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F36EFAD1FF5903A0070A7D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F36EFAF1FF5903A0070A7D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,6 +53,11 @@
 		0F7F4D931FF669CE00EE26B9 /* AddPatientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientController.swift; sourceTree = "<group>"; };
 		0F7F4D951FF67A7500EE26B9 /* PatientResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientResult.swift; sourceTree = "<group>"; };
 		0F7F4D991FF6858000EE26B9 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		0F7F4D9F1FF6959E00EE26B9 /* InterviewProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F7F4DA11FF6959E00EE26B9 /* InterviewProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectTests.swift; sourceTree = "<group>"; };
+		0F7F4DA31FF6959E00EE26B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F9BBC6D1FF69D370019E2CB /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipPresentAnimationController.swift; sourceTree = "<group>"; };
+		0F9BBC701FF69DD20019E2CB /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		0F9E38FE1FF5947100CD343C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2FF70BF19E76B927B1B3B2C7 /* Pods-InterviewProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewProject/Pods-InterviewProject.release.xcconfig"; sourceTree = "<group>"; };
 		7C783C2C20800C86DB501957 /* Pods-InterviewProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewProject/Pods-InterviewProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -57,6 +73,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0F7F4D9C1FF6959E00EE26B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				0F36EFA21FF5903A0070A7D7 /* InterviewProject */,
+				0F7F4DA01FF6959E00EE26B9 /* InterviewProjectTests */,
 				0F36EFA11FF5903A0070A7D7 /* Products */,
 				92EF7EC2A43EE31BCA585C69 /* Pods */,
 				DCCCA98F1A6C8AB24C1E26E6 /* Frameworks */,
@@ -74,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				0F36EFA01FF5903A0070A7D7 /* InterviewProject.app */,
+				0F7F4D9F1FF6959E00EE26B9 /* InterviewProjectTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,12 +106,12 @@
 		0F36EFA21FF5903A0070A7D7 /* InterviewProject */ = {
 			isa = PBXGroup;
 			children = (
+				0F9BBC6F1FF69DC60019E2CB /* Helper */,
 				0F7F4D8A1FF635D500EE26B9 /* Data */,
 				0F7F4D831FF6316C00EE26B9 /* Controller */,
 				0F7F4D821FF6316600EE26B9 /* View */,
 				0F7F4D811FF6316200EE26B9 /* Model */,
 				0F36EFA31FF5903A0070A7D7 /* AppDelegate.swift */,
-				0F36EFA51FF5903A0070A7D7 /* ViewController.swift */,
 				0F36EFA71FF5903A0070A7D7 /* Main.storyboard */,
 				0F36EFAC1FF5903A0070A7D7 /* LaunchScreen.storyboard */,
 				0F36EFAF1FF5903A0070A7D7 /* Info.plist */,
@@ -121,6 +146,7 @@
 				0F7F4D881FF635B400EE26B9 /* PatientsController.swift */,
 				0F7F4D931FF669CE00EE26B9 /* AddPatientController.swift */,
 				0F7F4D8D1FF63D9900EE26B9 /* PatientDetailsController.swift */,
+				0F9BBC6D1FF69D370019E2CB /* FlipPresentAnimationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -131,6 +157,23 @@
 				0F7F4D8B1FF635E000EE26B9 /* SampleData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		0F7F4DA01FF6959E00EE26B9 /* InterviewProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F7F4DA11FF6959E00EE26B9 /* InterviewProjectTests.swift */,
+				0F7F4DA31FF6959E00EE26B9 /* Info.plist */,
+			);
+			path = InterviewProjectTests;
+			sourceTree = "<group>";
+		};
+		0F9BBC6F1FF69DC60019E2CB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0F9BBC701FF69DD20019E2CB /* AnimationHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		92EF7EC2A43EE31BCA585C69 /* Pods */ = {
@@ -173,6 +216,24 @@
 			productReference = 0F36EFA01FF5903A0070A7D7 /* InterviewProject.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0F7F4D9E1FF6959E00EE26B9 /* InterviewProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F7F4DA61FF6959E00EE26B9 /* Build configuration list for PBXNativeTarget "InterviewProjectTests" */;
+			buildPhases = (
+				0F7F4D9B1FF6959E00EE26B9 /* Sources */,
+				0F7F4D9C1FF6959E00EE26B9 /* Frameworks */,
+				0F7F4D9D1FF6959E00EE26B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F7F4DA51FF6959E00EE26B9 /* PBXTargetDependency */,
+			);
+			name = InterviewProjectTests;
+			productName = InterviewProjectTests;
+			productReference = 0F7F4D9F1FF6959E00EE26B9 /* InterviewProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -186,6 +247,11 @@
 					0F36EF9F1FF5903A0070A7D7 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					0F7F4D9E1FF6959E00EE26B9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 0F36EF9F1FF5903A0070A7D7;
 					};
 				};
 			};
@@ -203,6 +269,7 @@
 			projectRoot = "";
 			targets = (
 				0F36EF9F1FF5903A0070A7D7 /* InterviewProject */,
+				0F7F4D9E1FF6959E00EE26B9 /* InterviewProjectTests */,
 			);
 		};
 /* End PBXProject section */
@@ -215,6 +282,13 @@
 				0F36EFAE1FF5903A0070A7D7 /* LaunchScreen.storyboard in Resources */,
 				0F7F4D901FF6495E00EE26B9 /* Assets.xcassets in Resources */,
 				0F36EFA91FF5903A0070A7D7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F7F4D9D1FF6959E00EE26B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,19 +358,36 @@
 				0F7F4D8E1FF63D9900EE26B9 /* PatientDetailsController.swift in Sources */,
 				0F7F4D941FF669CE00EE26B9 /* AddPatientController.swift in Sources */,
 				0F7F4D921FF6537300EE26B9 /* Extensions.swift in Sources */,
+				0F9BBC6E1FF69D370019E2CB /* FlipPresentAnimationController.swift in Sources */,
 				0F7F4D961FF67A7500EE26B9 /* PatientResult.swift in Sources */,
-				0F36EFA61FF5903A0070A7D7 /* ViewController.swift in Sources */,
 				0F7F4D9A1FF6858000EE26B9 /* DataModel.swift in Sources */,
 				0F7F4D8C1FF635E000EE26B9 /* SampleData.swift in Sources */,
 				0F7F4D851FF6317500EE26B9 /* Patient.swift in Sources */,
 				0F7F4D871FF631F400EE26B9 /* PatientCell.swift in Sources */,
 				0F7F4D891FF635B400EE26B9 /* PatientsController.swift in Sources */,
 				0F36EFA41FF5903A0070A7D7 /* AppDelegate.swift in Sources */,
+				0F9BBC711FF69DD20019E2CB /* AnimationHelper.swift in Sources */,
 				0F9E38FF1FF5947100CD343C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0F7F4D9B1FF6959E00EE26B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F7F4DA21FF6959E00EE26B9 /* InterviewProjectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0F7F4DA51FF6959E00EE26B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F36EF9F1FF5903A0070A7D7 /* InterviewProject */;
+			targetProxy = 0F7F4DA41FF6959E00EE26B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0F36EFA71FF5903A0070A7D7 /* Main.storyboard */ = {
@@ -457,6 +548,36 @@
 			};
 			name = Release;
 		};
+		0F7F4DA71FF6959E00EE26B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = InterviewProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljubinkovic.InterviewProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InterviewProject.app/InterviewProject";
+			};
+			name = Debug;
+		};
+		0F7F4DA81FF6959E00EE26B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = InterviewProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljubinkovic.InterviewProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InterviewProject.app/InterviewProject";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -474,6 +595,15 @@
 			buildConfigurations = (
 				0F36EFB31FF5903A0070A7D7 /* Debug */,
 				0F36EFB41FF5903A0070A7D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F7F4DA61FF6959E00EE26B9 /* Build configuration list for PBXNativeTarget "InterviewProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F7F4DA71FF6959E00EE26B9 /* Debug */,
+				0F7F4DA81FF6959E00EE26B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

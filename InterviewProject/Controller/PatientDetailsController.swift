@@ -61,6 +61,14 @@ class PatientDetailsController: UIViewController {
     let toddSyndromeProbabilityLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 10
+        
+        return label
+    }()
+    
+    let resultHistoryLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -135,13 +143,25 @@ class PatientDetailsController: UIViewController {
         toddSyndromeProbabilityLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8.0).isActive = true
 //        toddSyndromeProbabilityLabel.text = "Todd's Syndrom Probability: \(dataModel.calculateToddSyndromeProbabilityOfPatient(patient))"
         
+        var pastResults: String = ""
+        
         if let result = patientResultHistory?.last {
             patientLastResult = result
+            
+            pastResults += patientResultHistory!.description
+//            containerView.addSubview(resultHistoryLabel)
+//
+//            resultHistoryLabel.topAnchor.constraint(equalTo: toddSyndromeProbabilityLabel.bottomAnchor, constant: 16.0).isActive = true
+//            resultHistoryLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16.0).isActive = true
+//            resultHistoryLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8.0).isActive = true
+//            resultHistoryLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8.0).isActive = true
+//
+//            resultHistoryLabel.text = "Patient's result history data: \(patientResultHistory!)"
         } else {
             patientLastResult = dataModel.calculateToddSyndromeProbabilityOfPatient(patient)
         }
         
-        toddSyndromeProbabilityLabel.text = "Todd's Syndrom Probability: \(patientLastResult!)"
+        toddSyndromeProbabilityLabel.text = "Todd's Syndrom Probability: \(patientLastResult!)\nPast results: (\(pastResults))"
         
         
     }

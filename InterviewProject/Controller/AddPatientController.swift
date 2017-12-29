@@ -76,14 +76,19 @@ class AddPatientController: UITableViewController {
             patient.gender = patientGender
             patient.hasMigraine = hasMigrainesSwitch.isOn
             patient.takesDrugs = takesDrugsSwitch.isOn
-                
+            
             delegate?.addPatientController(self, didFinishEditing: patient)
+            
         } else {
             let patientGender: String
             if patientGenderSegmentedControl.selectedSegmentIndex == 0 { patientGender = Genders.male.rawValue } else { patientGender = Genders.female.rawValue }
             let patient = Patient(name: patientNameTextField.text!, age: Int(patientAgeTextField.text!)!, gender: patientGender, hasMigraine: hasMigrainesSwitch.isOn, takesDrugs: takesDrugsSwitch.isOn, photo: nil, patientResults: nil)
             
-            delegate?.addPatientController(self, didFinishAdding: patient!)
+            if let patient = patient {
+                delegate?.addPatientController(self, didFinishAdding: patient)
+            } else {
+                dismiss(animated: true, completion: nil)
+            }
         }
     }
     

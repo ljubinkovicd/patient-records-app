@@ -4,6 +4,7 @@ use_frameworks!
 
 target 'InterviewProject' do
 
+  # Networking
   pod 'Alamofire', '~> 4.5'
   pod 'AlamofireImage', '~> 3.3'
 

@@ -54,7 +54,9 @@ class DataModel {
     }
     
     // Save result to UserDefaults results array.
-    func saveResultToUserDefaults(patient: Patient, result: Float) {
+    func saveResultToUserDefaults(patient: Patient?, result: Float) {
+        
+        guard let patient = patient else { return }
         
 //        let result = Float(calculateToddSyndromeProbabilityOfPatient(patient))
         
@@ -64,7 +66,9 @@ class DataModel {
     }
     
     // Read the results array from UserDefaults.
-    func readResultsFromUserDefaults(patient: Patient) -> [Float]? {
+    func readResultsFromUserDefaults(patient: Patient?) -> [Float]? {
+        
+        guard let patient = patient else { return nil }
         
         let results = userDefaults.object(forKey: patient.name) as? [Float] ?? [Float]()
         
