@@ -21,3 +21,10 @@ extension UIColor {
         self.init(red: red / 255.0, green: green / 255.0, blue: blue / 255.0, alpha: 1.0)
     }
 }
+
+extension Date {
+    // Returns the amount of years from another date
+    func years(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
+    }
+}

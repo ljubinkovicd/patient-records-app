@@ -119,8 +119,14 @@ class AddPatientController: UITableViewController {
         
         if let patient = patientToEdit {
             patient.name = patientNameTextField.text!
-            patient.age = Int(patientAgeTextField.text!)!
+//            patient.age = Int(patientAgeTextField.text!)!
+            
             patient.dateOfBirth = dateOfBirth
+            
+            let currentDate = Date()
+            let interval = currentDate.years(from: patient.dateOfBirth)
+            print("DIFFERENCE BETWEEN TODAY AND THE SELECTED DATE (IN YEARS): \(interval)")
+            
             let patientGender: String
             if patientGenderSegmentedControl.selectedSegmentIndex == 0 {
                 patientGender = Genders.male.rawValue
@@ -136,8 +142,14 @@ class AddPatientController: UITableViewController {
         } else {
             let patientGender: String
             if patientGenderSegmentedControl.selectedSegmentIndex == 0 { patientGender = Genders.male.rawValue } else { patientGender = Genders.female.rawValue }
+            
             let patient = Patient(name: patientNameTextField.text!, age: Int(patientAgeTextField.text!)!, gender: patientGender, hasMigraine: hasMigrainesSwitch.isOn, takesDrugs: takesDrugsSwitch.isOn, photo: nil, patientResults: nil)
-            patient?.dateOfBirth = dateOfBirth
+            
+            patient!.dateOfBirth = dateOfBirth
+            
+            let currentDate = Date()
+            let interval = currentDate.years(from: patient!.dateOfBirth)
+            print("DIFFERENCE BETWEEN TODAY AND THE SELECTED DATE (IN YEARS): \(interval)")
             
             if let patient = patient {
                 delegate?.addPatientController(self, didFinishAdding: patient)

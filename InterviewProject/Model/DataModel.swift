@@ -98,7 +98,6 @@ class DataModel {
         result = Float(count) / Float(numberOfSymptoms)
         result *= 100.0 // Convert to percentage
 
-//        return "\(result.clean.description)%"
         return result
     }
 
