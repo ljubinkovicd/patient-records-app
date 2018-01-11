@@ -52,6 +52,14 @@ class PatientsController: UITableViewController {
     
     var dataModel: DataModel!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if dataModel.patients.count != 0 {
+            animateTable()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -110,6 +118,30 @@ class PatientsController: UITableViewController {
     
     @objc func addRecord() {
         performSegue(withIdentifier: Constants.SegueIdentifiers.addPatientSegue, sender: self)
+    }
+    
+    // MARK: - Animation Methods
+    func animateTable() {
+        tableView.reloadData()
+        
+        let cells = tableView.visibleCells
+        let tableHeight: CGFloat = tableView.bounds.size.height
+        
+        for i in cells {
+            let cell: PatientCell = i as! PatientCell // or as PatientCell ?
+            cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
+        }
+        
+        var index = 0
+        
+        for m in cells {
+            let cell: PatientCell = m as! PatientCell // or as PatientCell ?
+            UIView.animate(withDuration: 2.0, delay: 0.05 * Double(index), usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: [], animations: {
+            
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            index += 1
+        }
     }
 }
 
