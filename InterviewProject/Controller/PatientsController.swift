@@ -8,11 +8,47 @@
 
 import UIKit
 
-struct PatientCellIdentifiers {
+struct TableViewCellIdentifiers {
     static let patientCellId = "PatientCell"
 }
 
 class PatientsController: UITableViewController {
+    
+    var containerView: UIView = {
+        let uiView = UIView()
+        uiView.translatesAutoresizingMaskIntoConstraints = false
+        uiView.backgroundColor = UIColor.white
+        
+        return uiView
+    }()
+    
+    let noRecordsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.text = NSLocalizedString("No data available", comment: "Describes the state of table view, if it is empty or not.")
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    let addRecordsButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(addRecord), for: .touchUpInside)
+        
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
+        button.backgroundColor = UIColor.blue
+        button.setTitle(NSLocalizedString("Add a patient", comment: "Button that adds a patient."), for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        
+        button.layer.cornerRadius = 16.0
+        button.layer.masksToBounds = true
+        
+        return button
+    }()
     
     var dataModel: DataModel!
     
@@ -22,12 +58,39 @@ class PatientsController: UITableViewController {
     
     // MARK: - Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataModel.patients.count
+        
+        if dataModel.patients.count == 0 {
+            
+            tableView.addSubview(containerView)
+            containerView.addSubview(noRecordsLabel)
+            containerView.addSubview(addRecordsButton)
+            
+            containerView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+            containerView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
+            containerView.widthAnchor.constraint(equalToConstant: 200.0).isActive = true
+            containerView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+            
+            noRecordsLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+            noRecordsLabel.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+            
+            addRecordsButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+            addRecordsButton.topAnchor.constraint(equalTo: noRecordsLabel.bottomAnchor, constant: 16.0).isActive = true
+            
+            tableView.backgroundView = containerView
+            tableView.separatorStyle = .none
+            
+            return 0
+        } else {
+            tableView.separatorStyle = .singleLine
+            tableView.backgroundView = nil
+            
+            return dataModel.patients.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PatientCellIdentifiers.patientCellId, for: indexPath) as? PatientCell else { fatalError("The dequeued cell is not an instance of PatientCell.") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.patientCellId, for: indexPath) as? PatientCell else { fatalError("The dequeued cell is not an instance of PatientCell.") }
         
         let patient = dataModel.patients[indexPath.row]
         cell.patient = patient
@@ -54,9 +117,14 @@ class PatientsController: UITableViewController {
     }
     
     // MARK: - Segue
+    @objc fileprivate func addRecord() {
+        performSegue(withIdentifier: Constants.SegueIdentifiers.addPatientSegue, sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == Constants.SegueIdentifiers.addPatientSegue {
+            
             let navigationController = segue.destination as! UINavigationController
             let addPatientController = navigationController.topViewController as! AddPatientController
             
@@ -73,7 +141,7 @@ class PatientsController: UITableViewController {
                 addPatientController.patientToEdit = dataModel.patients[indexPath.row]
             }
         }
-
+        
         if segue.identifier == Constants.SegueIdentifiers.patientDetailsSegue {
             guard let cell = sender as? PatientCell,
                 let indexPath = tableView.indexPath(for: cell) else {
@@ -81,10 +149,10 @@ class PatientsController: UITableViewController {
             }
             
             let index = indexPath.row
-//            //____________________________________________________________
-//            UserDefaults.standard.set(index, forKey: "PatientIndex")
-//            let selectedPatient = self.dataModel.patients[index]
-//            //____________________________________________________________
+            //            //____________________________________________________________
+            //            UserDefaults.standard.set(index, forKey: "PatientIndex")
+            //            let selectedPatient = self.dataModel.patients[index]
+            //            //____________________________________________________________
             
             let selectedPatient = self.dataModel.patients[index]
             
@@ -127,7 +195,7 @@ extension PatientsController: AddPatientControllerDelegate {
         
         print("\(patient.name) + \(patient.age)")
         let result = dataModel.calculateToddSyndromeProbabilityOfPatient(patient)
-
+        
         dataModel.saveResultToUserDefaults(patient: patient, result: result)
     }
     
@@ -143,7 +211,7 @@ extension PatientsController: AddPatientControllerDelegate {
         
         dataModel.savePatients()
         let result = dataModel.calculateToddSyndromeProbabilityOfPatient(patient)
-       
+        
         dataModel.saveResultToUserDefaults(patient: patient, result: result)
     }
 }
