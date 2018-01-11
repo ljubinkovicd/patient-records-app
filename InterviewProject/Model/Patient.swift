@@ -19,6 +19,7 @@ class Patient: NSObject, NSCoding {
     // MARK: - Properties
     var name: String = ""
     var age: Int = 0
+    var dateOfBirth = Date()
     var gender: String
     var hasMigraine: Bool
     var takesDrugs: Bool
@@ -50,6 +51,7 @@ class Patient: NSObject, NSCoding {
     func encode(with aCoder: NSCoder) {
         aCoder.encode(name, forKey: "Name")
         aCoder.encode(age, forKey: "Age")
+        aCoder.encode(dateOfBirth, forKey: "DateOfBirth")
         aCoder.encode(gender, forKey: "Gender")
         aCoder.encode(hasMigraine, forKey: "HasMigraine")
         aCoder.encode(takesDrugs, forKey: "TakesDrugs")
@@ -59,10 +61,12 @@ class Patient: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObject(forKey: "Name") as! String
         age = aDecoder.decodeInteger(forKey: "Age")
+        dateOfBirth = aDecoder.decodeObject(forKey: "DateOfBirth") as! Date
         gender = aDecoder.decodeObject(forKey: "Gender") as! String
         hasMigraine = aDecoder.decodeBool(forKey: "HasMigraine")
         takesDrugs = aDecoder.decodeBool(forKey: "TakesDrugs")
         photo = aDecoder.decodeObject(forKey: "Photo") as? UIImage
+        
         super.init()
     }
 }

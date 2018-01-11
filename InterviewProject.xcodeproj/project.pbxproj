@@ -21,8 +21,6 @@
 		0F7F4D961FF67A7500EE26B9 /* PatientResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D951FF67A7500EE26B9 /* PatientResult.swift */; };
 		0F7F4D9A1FF6858000EE26B9 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D991FF6858000EE26B9 /* DataModel.swift */; };
 		0F7F4DA21FF6959E00EE26B9 /* InterviewProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4DA11FF6959E00EE26B9 /* InterviewProjectTests.swift */; };
-		0F9BBC6E1FF69D370019E2CB /* FlipPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9BBC6D1FF69D370019E2CB /* FlipPresentAnimationController.swift */; };
-		0F9BBC711FF69DD20019E2CB /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9BBC701FF69DD20019E2CB /* AnimationHelper.swift */; };
 		0F9E38FF1FF5947100CD343C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E38FE1FF5947100CD343C /* Constants.swift */; };
 		16BE9D9B3EB1B5E326785EE4 /* Pods_InterviewProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BFD3CEAD296E47E6C3F864 /* Pods_InterviewProject.framework */; };
 /* End PBXBuildFile section */
@@ -56,8 +54,6 @@
 		0F7F4D9F1FF6959E00EE26B9 /* InterviewProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7F4DA11FF6959E00EE26B9 /* InterviewProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterviewProjectTests.swift; sourceTree = "<group>"; };
 		0F7F4DA31FF6959E00EE26B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0F9BBC6D1FF69D370019E2CB /* FlipPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipPresentAnimationController.swift; sourceTree = "<group>"; };
-		0F9BBC701FF69DD20019E2CB /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		0F9E38FE1FF5947100CD343C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2FF70BF19E76B927B1B3B2C7 /* Pods-InterviewProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewProject/Pods-InterviewProject.release.xcconfig"; sourceTree = "<group>"; };
 		7C783C2C20800C86DB501957 /* Pods-InterviewProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewProject/Pods-InterviewProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,9 +111,7 @@
 				0F36EFA71FF5903A0070A7D7 /* Main.storyboard */,
 				0F36EFAC1FF5903A0070A7D7 /* LaunchScreen.storyboard */,
 				0F36EFAF1FF5903A0070A7D7 /* Info.plist */,
-				0F9E38FE1FF5947100CD343C /* Constants.swift */,
 				0F7F4D8F1FF6495E00EE26B9 /* Assets.xcassets */,
-				0F7F4D911FF6537300EE26B9 /* Extensions.swift */,
 			);
 			path = InterviewProject;
 			sourceTree = "<group>";
@@ -146,7 +140,6 @@
 				0F7F4D881FF635B400EE26B9 /* PatientsController.swift */,
 				0F7F4D931FF669CE00EE26B9 /* AddPatientController.swift */,
 				0F7F4D8D1FF63D9900EE26B9 /* PatientDetailsController.swift */,
-				0F9BBC6D1FF69D370019E2CB /* FlipPresentAnimationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -171,7 +164,8 @@
 		0F9BBC6F1FF69DC60019E2CB /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				0F9BBC701FF69DD20019E2CB /* AnimationHelper.swift */,
+				0F9E38FE1FF5947100CD343C /* Constants.swift */,
+				0F7F4D911FF6537300EE26B9 /* Extensions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -358,7 +352,6 @@
 				0F7F4D8E1FF63D9900EE26B9 /* PatientDetailsController.swift in Sources */,
 				0F7F4D941FF669CE00EE26B9 /* AddPatientController.swift in Sources */,
 				0F7F4D921FF6537300EE26B9 /* Extensions.swift in Sources */,
-				0F9BBC6E1FF69D370019E2CB /* FlipPresentAnimationController.swift in Sources */,
 				0F7F4D961FF67A7500EE26B9 /* PatientResult.swift in Sources */,
 				0F7F4D9A1FF6858000EE26B9 /* DataModel.swift in Sources */,
 				0F7F4D8C1FF635E000EE26B9 /* SampleData.swift in Sources */,
@@ -366,7 +359,6 @@
 				0F7F4D871FF631F400EE26B9 /* PatientCell.swift in Sources */,
 				0F7F4D891FF635B400EE26B9 /* PatientsController.swift in Sources */,
 				0F36EFA41FF5903A0070A7D7 /* AppDelegate.swift in Sources */,
-				0F9BBC711FF69DD20019E2CB /* AnimationHelper.swift in Sources */,
 				0F9E38FF1FF5947100CD343C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

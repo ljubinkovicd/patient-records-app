@@ -141,7 +141,6 @@ class PatientDetailsController: UIViewController {
         toddSyndromeProbabilityLabel.topAnchor.constraint(equalTo: hasMigrainesLabel.bottomAnchor, constant: 16.0).isActive = true
         toddSyndromeProbabilityLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8.0).isActive = true
         toddSyndromeProbabilityLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8.0).isActive = true
-//        toddSyndromeProbabilityLabel.text = "Todd's Syndrom Probability: \(dataModel.calculateToddSyndromeProbabilityOfPatient(patient))"
         
         var pastResults: String = ""
         
@@ -149,20 +148,11 @@ class PatientDetailsController: UIViewController {
             patientLastResult = result
             
             pastResults += patientResultHistory!.description
-//            containerView.addSubview(resultHistoryLabel)
-//
-//            resultHistoryLabel.topAnchor.constraint(equalTo: toddSyndromeProbabilityLabel.bottomAnchor, constant: 16.0).isActive = true
-//            resultHistoryLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16.0).isActive = true
-//            resultHistoryLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8.0).isActive = true
-//            resultHistoryLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8.0).isActive = true
-//
-//            resultHistoryLabel.text = "Patient's result history data: \(patientResultHistory!)"
+
         } else {
             patientLastResult = dataModel.calculateToddSyndromeProbabilityOfPatient(patient)
         }
         
         toddSyndromeProbabilityLabel.text = "Todd's Syndrom Probability: \(patientLastResult!)\nPast results: (\(pastResults))"
-        
-        
     }
 }

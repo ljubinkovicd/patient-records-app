@@ -26,8 +26,8 @@ class PatientsController: UITableViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        label.text = NSLocalizedString("No data available", comment: "Describes the state of table view, if it is empty or not.")
-        label.textColor = UIColor.black
+        label.text = NSLocalizedString("There are no patient records.", comment: "Describes the state of table view, if it is empty or not.")
+        label.textColor = UIColor.lightGray
         label.textAlignment = .center
         
         return label
@@ -38,9 +38,9 @@ class PatientsController: UITableViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(addRecord), for: .touchUpInside)
         
-        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         
-        button.backgroundColor = UIColor.blue
+        button.backgroundColor = UIColor(red: 0, green: 122, blue: 255) // Default blue
         button.setTitle(NSLocalizedString("Add a patient", comment: "Button that adds a patient."), for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         
@@ -56,7 +56,66 @@ class PatientsController: UITableViewController {
         super.viewDidLoad()
     }
     
-    // MARK: - Data Source
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == Constants.SegueIdentifiers.addPatientSegue {
+            
+            let navigationController = segue.destination as! UINavigationController
+            let addPatientController = navigationController.topViewController as! AddPatientController
+            
+            addPatientController.delegate = self
+        }
+        
+        if segue.identifier == Constants.SegueIdentifiers.editPatientSegue {
+            let navigationController = segue.destination as! UINavigationController
+            let addPatientController = navigationController.topViewController as! AddPatientController
+            
+            addPatientController.delegate = self
+            
+            if let indexPath = tableView.indexPath(for: sender as! PatientCell) {
+                addPatientController.patientToEdit = dataModel.patients[indexPath.row]
+            }
+        }
+        
+        if segue.identifier == Constants.SegueIdentifiers.patientDetailsSegue {
+            guard let cell = sender as? PatientCell,
+                let indexPath = tableView.indexPath(for: cell) else {
+                    return
+            }
+            
+            let index = indexPath.row
+            //            //____________________________________________________________
+            //            UserDefaults.standard.set(index, forKey: "PatientIndex")
+            //            let selectedPatient = self.dataModel.patients[index]
+            //            //____________________________________________________________
+            
+            let selectedPatient = self.dataModel.patients[index]
+            
+            let patientDetailsController = segue.destination as? PatientDetailsController
+            patientDetailsController?.patient = selectedPatient
+            patientDetailsController?.dataModel = dataModel
+        }
+    }
+    
+    // MARK: - Custom Methods
+    func configureText(for cell: PatientCell,
+                       with patient: Patient) {
+        
+        let label1 = cell.viewWithTag(1000) as! UILabel
+        label1.text = patient.name
+        let label2 = cell.viewWithTag(1001) as! UILabel
+        label2.text = "Age: \(patient.age), Gender: \(patient.gender)"
+    }
+    
+    @objc func addRecord() {
+        performSegue(withIdentifier: Constants.SegueIdentifiers.addPatientSegue, sender: self)
+    }
+}
+
+// MARK: - Data Source
+extension PatientsController {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if dataModel.patients.count == 0 {
@@ -109,67 +168,14 @@ class PatientsController: UITableViewController {
         
         dataModel.savePatients()
     }
+}
+
+// MARK: - Delegate
+extension PatientsController {
     
-    // MARK: - Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    // MARK: - Segue
-    @objc fileprivate func addRecord() {
-        performSegue(withIdentifier: Constants.SegueIdentifiers.addPatientSegue, sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == Constants.SegueIdentifiers.addPatientSegue {
-            
-            let navigationController = segue.destination as! UINavigationController
-            let addPatientController = navigationController.topViewController as! AddPatientController
-            
-            addPatientController.delegate = self
-        }
-        
-        if segue.identifier == Constants.SegueIdentifiers.editPatientSegue {
-            let navigationController = segue.destination as! UINavigationController
-            let addPatientController = navigationController.topViewController as! AddPatientController
-            
-            addPatientController.delegate = self
-            
-            if let indexPath = tableView.indexPath(for: sender as! PatientCell) {
-                addPatientController.patientToEdit = dataModel.patients[indexPath.row]
-            }
-        }
-        
-        if segue.identifier == Constants.SegueIdentifiers.patientDetailsSegue {
-            guard let cell = sender as? PatientCell,
-                let indexPath = tableView.indexPath(for: cell) else {
-                    return
-            }
-            
-            let index = indexPath.row
-            //            //____________________________________________________________
-            //            UserDefaults.standard.set(index, forKey: "PatientIndex")
-            //            let selectedPatient = self.dataModel.patients[index]
-            //            //____________________________________________________________
-            
-            let selectedPatient = self.dataModel.patients[index]
-            
-            let patientDetailsController = segue.destination as? PatientDetailsController
-            patientDetailsController?.patient = selectedPatient
-            patientDetailsController?.dataModel = dataModel
-        }
-    }
-    
-    // MARK: - Custom Methods
-    func configureText(for cell: PatientCell,
-                       with patient: Patient) {
-        
-        let label1 = cell.viewWithTag(1000) as! UILabel
-        label1.text = patient.name
-        let label2 = cell.viewWithTag(1001) as! UILabel
-        label2.text = "Age: \(patient.age), Gender: \(patient.gender)"
     }
 }
 
