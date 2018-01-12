@@ -13,7 +13,6 @@
 		0F7F4D851FF6317500EE26B9 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D841FF6317500EE26B9 /* Patient.swift */; };
 		0F7F4D871FF631F400EE26B9 /* PatientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D861FF631F400EE26B9 /* PatientCell.swift */; };
 		0F7F4D891FF635B400EE26B9 /* PatientsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D881FF635B400EE26B9 /* PatientsController.swift */; };
-		0F7F4D8C1FF635E000EE26B9 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D8B1FF635E000EE26B9 /* SampleData.swift */; };
 		0F7F4D8E1FF63D9900EE26B9 /* PatientDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D8D1FF63D9900EE26B9 /* PatientDetailsController.swift */; };
 		0F7F4D901FF6495E00EE26B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F7F4D8F1FF6495E00EE26B9 /* Assets.xcassets */; };
 		0F7F4D921FF6537300EE26B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4D911FF6537300EE26B9 /* Extensions.swift */; };
@@ -44,7 +43,6 @@
 		0F7F4D841FF6317500EE26B9 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		0F7F4D861FF631F400EE26B9 /* PatientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCell.swift; sourceTree = "<group>"; };
 		0F7F4D881FF635B400EE26B9 /* PatientsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientsController.swift; sourceTree = "<group>"; };
-		0F7F4D8B1FF635E000EE26B9 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		0F7F4D8D1FF63D9900EE26B9 /* PatientDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsController.swift; sourceTree = "<group>"; };
 		0F7F4D8F1FF6495E00EE26B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F7F4D911FF6537300EE26B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				0F9BBC6F1FF69DC60019E2CB /* Helper */,
-				0F7F4D8A1FF635D500EE26B9 /* Data */,
 				0F7F4D831FF6316C00EE26B9 /* Controller */,
 				0F7F4D821FF6316600EE26B9 /* View */,
 				0F7F4D811FF6316200EE26B9 /* Model */,
@@ -142,14 +139,6 @@
 				0F7F4D8D1FF63D9900EE26B9 /* PatientDetailsController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		0F7F4D8A1FF635D500EE26B9 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				0F7F4D8B1FF635E000EE26B9 /* SampleData.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		0F7F4DA01FF6959E00EE26B9 /* InterviewProjectTests */ = {
@@ -354,7 +343,6 @@
 				0F7F4D921FF6537300EE26B9 /* Extensions.swift in Sources */,
 				0F7F4D961FF67A7500EE26B9 /* PatientResult.swift in Sources */,
 				0F7F4D9A1FF6858000EE26B9 /* DataModel.swift in Sources */,
-				0F7F4D8C1FF635E000EE26B9 /* SampleData.swift in Sources */,
 				0F7F4D851FF6317500EE26B9 /* Patient.swift in Sources */,
 				0F7F4D871FF631F400EE26B9 /* PatientCell.swift in Sources */,
 				0F7F4D891FF635B400EE26B9 /* PatientsController.swift in Sources */,

@@ -22,7 +22,6 @@ class AddPatientController: UITableViewController {
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     
     @IBOutlet weak var patientNameTextField: UITextField!
-    @IBOutlet weak var patientAgeTextField: UITextField!
     @IBOutlet weak var patientGenderSegmentedControl: UISegmentedControl!
     @IBOutlet weak var hasMigrainesSwitch: UISwitch!
     @IBOutlet weak var takesDrugsSwitch: UISwitch!
@@ -47,7 +46,6 @@ class AddPatientController: UITableViewController {
         if let patient = patientToEdit {
             title = "Edit Patient"
             patientNameTextField.text = patient.name
-            patientAgeTextField.text = patient.age.description
             
             if patient.gender == Genders.male.rawValue {
                 patientGenderSegmentedControl.selectedSegmentIndex = 0
@@ -78,8 +76,8 @@ class AddPatientController: UITableViewController {
     func showDatePicker() {
         datePickerVisible = true
         
-        let indexPathDateRow = IndexPath(row: 5, section: 0)
-        let indexPathDatePicker = IndexPath(row: 6, section: 0) // make it show up under the dateOfBirth label
+        let indexPathDateRow = IndexPath(row: 4, section: 0)
+        let indexPathDatePicker = IndexPath(row: 5, section: 0) // make it show up under the dateOfBirth label
         
         if let dateCell = tableView.cellForRow(at: indexPathDateRow) {
             dateOfBirthLabel.textColor = UIColor(red: 0, green: 122, blue: 255)
@@ -96,8 +94,8 @@ class AddPatientController: UITableViewController {
         if datePickerVisible {
             datePickerVisible = false
             
-            let indexPathDateRow = IndexPath(row: 5, section: 0)
-            let indexPathDatePicker = IndexPath(row: 6, section: 0)
+            let indexPathDateRow = IndexPath(row: 4, section: 0)
+            let indexPathDatePicker = IndexPath(row: 5, section: 0)
             
             if let cell = tableView.cellForRow(at: indexPathDateRow) {
                 dateOfBirthLabel.textColor = UIColor.lightGray
@@ -110,6 +108,14 @@ class AddPatientController: UITableViewController {
         }
     }
     
+    func calculateAgeBasedOnDateOfBirth(dateOfBirth: Date) -> Int {
+        let currentDate = Date()
+        let interval = currentDate.years(from: dateOfBirth)
+        print("DIFFERENCE BETWEEN TODAY AND THE SELECTED DATE (IN YEARS): \(interval)")
+        
+        return interval
+    }
+    
     // MARK: - Button Tap Methods
     @IBAction func cancel() {
         delegate?.addPatientControllerDidCancel(self)
@@ -119,13 +125,10 @@ class AddPatientController: UITableViewController {
         
         if let patient = patientToEdit {
             patient.name = patientNameTextField.text!
-//            patient.age = Int(patientAgeTextField.text!)!
             
             patient.dateOfBirth = dateOfBirth
             
-            let currentDate = Date()
-            let interval = currentDate.years(from: patient.dateOfBirth)
-            print("DIFFERENCE BETWEEN TODAY AND THE SELECTED DATE (IN YEARS): \(interval)")
+            patient.age = calculateAgeBasedOnDateOfBirth(dateOfBirth: patient.dateOfBirth)
             
             let patientGender: String
             if patientGenderSegmentedControl.selectedSegmentIndex == 0 {
@@ -143,15 +146,19 @@ class AddPatientController: UITableViewController {
             let patientGender: String
             if patientGenderSegmentedControl.selectedSegmentIndex == 0 { patientGender = Genders.male.rawValue } else { patientGender = Genders.female.rawValue }
             
-            let patient = Patient(name: patientNameTextField.text!, age: Int(patientAgeTextField.text!)!, gender: patientGender, hasMigraine: hasMigrainesSwitch.isOn, takesDrugs: takesDrugsSwitch.isOn, photo: nil, patientResults: nil)
-            
-            patient!.dateOfBirth = dateOfBirth
-            
-            let currentDate = Date()
-            let interval = currentDate.years(from: patient!.dateOfBirth)
-            print("DIFFERENCE BETWEEN TODAY AND THE SELECTED DATE (IN YEARS): \(interval)")
+            let patient: Patient? = Patient()
             
             if let patient = patient {
+                patient.name = patientNameTextField.text!
+                patient.dateOfBirth = dateOfBirth
+                
+                patient.age = calculateAgeBasedOnDateOfBirth(dateOfBirth: patient.dateOfBirth)
+                patient.gender = patientGender
+                patient.hasMigraine = hasMigrainesSwitch.isOn
+                patient.takesDrugs = takesDrugsSwitch.isOn
+                patient.photo = UIImage(named: "default")
+                patient.patientResults = nil
+                
                 delegate?.addPatientController(self, didFinishAdding: patient)
             } else {
                 dismiss(animated: true, completion: nil)
@@ -170,15 +177,16 @@ extension AddPatientController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        // If we have clicked on date label, we want to display date picker in a new row.
         if section == 0 && datePickerVisible {
-            return 7 // or 6?
+            return 6
         } else {
             return super.tableView(tableView, numberOfRowsInSection: section)
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 && indexPath.row == 6 {
+        if indexPath.section == 0 && indexPath.row == 5 {
             return datePickerCell
         } else {
             return super.tableView(tableView, cellForRowAt: indexPath)
@@ -187,7 +195,7 @@ extension AddPatientController {
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         var newIndexPath = indexPath
-        if indexPath.section == 0 && indexPath.row == 6 {
+        if indexPath.section == 0 && indexPath.row == 5 {
             newIndexPath = IndexPath(row: 0, section: indexPath.section)
         }
         return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
@@ -200,9 +208,9 @@ extension AddPatientController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        patientAgeTextField.resignFirstResponder()
+        patientNameTextField.resignFirstResponder()
         
-        if indexPath.section == 0 && indexPath.row == 5 {
+        if indexPath.section == 0 && indexPath.row == 4 {
             
             if !datePickerVisible {
                 showDatePicker()
@@ -214,7 +222,7 @@ extension AddPatientController {
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        if indexPath.section == 0 && indexPath.row == 5 {
+        if indexPath.section == 0 && indexPath.row == 4 {
             return indexPath
         } else {
             return nil
@@ -223,8 +231,10 @@ extension AddPatientController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.section == 0 && indexPath.row == 6 {
-            return 217
+        if indexPath.section == 0 && indexPath.row == 5 {
+            let datePickerHeight: CGFloat = 217.0
+            
+            return datePickerHeight
         } else {
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
@@ -242,7 +252,7 @@ extension AddPatientController : UITextFieldDelegate {
                    replacementString string: String) -> Bool {
         let oldText = textField.text! as NSString
         let newText = oldText.replacingCharacters(in: range, with: string)
-       
+        
         doneBarButton.isEnabled = (newText.count > 0)
         
         return true

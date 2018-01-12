@@ -37,6 +37,13 @@ class PatientDetailsController: UIViewController {
         return label
     }()
     
+    let patientDOBLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     let patientGenderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -107,6 +114,7 @@ class PatientDetailsController: UIViewController {
         
         containerView.addSubview(patientImageView)
         containerView.addSubview(patientAgeLabel)
+        containerView.addSubview(patientDOBLabel)
         containerView.addSubview(patientGenderLabel)
         containerView.addSubview(hasDrugAbuseLabel)
         containerView.addSubview(hasMigrainesLabel)
@@ -122,8 +130,14 @@ class PatientDetailsController: UIViewController {
         patientAgeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8.0).isActive = true
         patientAgeLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8.0).isActive = true
         patientAgeLabel.text = "Age: \(patient.age.description)"
-
-        patientGenderLabel.topAnchor.constraint(equalTo: patientAgeLabel.bottomAnchor, constant: 16.0).isActive = true
+        
+        patientDOBLabel.topAnchor.constraint(equalTo: patientAgeLabel.bottomAnchor, constant: 16.0).isActive = true
+        patientDOBLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8.0).isActive = true
+        patientDOBLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8.0).isActive = true
+//        patientDOBLabel.text = patient.dateOfBirth.description
+        updateDateOfBirthLabel(dateOfBirth: patient.dateOfBirth)
+        
+        patientGenderLabel.topAnchor.constraint(equalTo: patientDOBLabel.bottomAnchor, constant: 16.0).isActive = true
         patientGenderLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8.0).isActive = true
         patientGenderLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8.0).isActive = true
         patientGenderLabel.text = "Gender: \(patient.gender)"
@@ -154,5 +168,14 @@ class PatientDetailsController: UIViewController {
         }
         
         toddSyndromeProbabilityLabel.text = "Todd's Syndrom Probability: \(patientLastResult!)\nPast results: (\(pastResults))"
+    }
+    
+    // MARK: - Custom Methods
+    func updateDateOfBirthLabel(dateOfBirth: Date) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        
+        patientDOBLabel.text = "Date of birth: \(formatter.string(from: dateOfBirth))"
     }
 }

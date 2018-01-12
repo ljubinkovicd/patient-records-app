@@ -131,29 +131,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="XTI-z7-isf">
-                                        <rect key="frame" x="0.0" y="79" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XTI-z7-isf" id="v42-Xs-jzO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Patient's Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kEn-JU-oC8">
-                                                    <rect key="frame" x="16" y="6" width="288" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="done" destination="n5j-Ma-Cea" eventType="editingDidEndOnExit" id="rhZ-EL-rEP"/>
-                                                        <outlet property="delegate" destination="n5j-Ma-Cea" id="0Vy-Xe-NKh"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="yEu-to-b3B">
-                                        <rect key="frame" x="0.0" y="123" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="79" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yEu-to-b3B" id="bgQ-g4-4QY">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -176,7 +155,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="YBS-5A-fQE">
-                                        <rect key="frame" x="0.0" y="167" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="123" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YBS-5A-fQE" id="YY0-z4-Eb1">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -203,7 +182,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Iaa-ew-VaX">
-                                        <rect key="frame" x="0.0" y="211" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="167" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iaa-ew-VaX" id="QdR-31-91y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -230,7 +209,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="vm4-UP-oMV">
-                                        <rect key="frame" x="0.0" y="255" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="211" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vm4-UP-oMV" id="swd-dR-XYc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -285,7 +264,6 @@
                         <outlet property="datePickerCell" destination="RKk-oq-oJy" id="eS8-q2-qfc"/>
                         <outlet property="doneBarButton" destination="wjL-8r-gwh" id="r3L-OX-67k"/>
                         <outlet property="hasMigrainesSwitch" destination="hGT-q4-fMb" id="HWh-Il-NV1"/>
-                        <outlet property="patientAgeTextField" destination="kEn-JU-oC8" id="paP-cT-XOv"/>
                         <outlet property="patientGenderSegmentedControl" destination="68Y-8D-knu" id="cNd-tR-opm"/>
                         <outlet property="patientNameTextField" destination="umI-vU-eNW" id="N0C-RB-lMI"/>
                         <outlet property="takesDrugsSwitch" destination="WrD-MM-CwO" id="CAy-mz-xEZ"/>
@@ -299,13 +277,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="216.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="teD-Ey-CWd">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teD-Ey-CWd">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="217"/>
-                                <date key="date" timeIntervalSinceReferenceDate="537390948.40300798">
-                                    <!--2018-01-11 19:15:48 +0000-->
+                                <date key="date" timeIntervalSinceReferenceDate="536410800.40300798">
+                                    <!--2017-12-31 11:00:00 +0000-->
                                 </date>
                                 <date key="minimumDate" timeIntervalSinceReferenceDate="-3187256400">
                                     <!--1900-01-01 11:00:00 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="536410800">
+                                    <!--2017-12-31 11:00:00 +0000-->
                                 </date>
                                 <connections>
                                     <action selector="dateChanged:" destination="n5j-Ma-Cea" eventType="valueChanged" id="eER-N3-Hj5"/>

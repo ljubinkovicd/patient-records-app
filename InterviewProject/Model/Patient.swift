@@ -20,11 +20,15 @@ class Patient: NSObject, NSCoding {
     var name: String = ""
     var age: Int = 0
     var dateOfBirth = Date()
-    var gender: String
-    var hasMigraine: Bool
-    var takesDrugs: Bool
-    var photo: UIImage?
-    var patientResults: [Float]?
+    var gender: String = Genders.male.rawValue
+    var hasMigraine: Bool = false
+    var takesDrugs: Bool = false
+    var photo: UIImage? = nil
+    var patientResults: [Float]? = nil
+    
+    override init() {
+        super.init()
+    }
     
     // MARK: - Initialization    
     init?(name: String, age: Int, gender: String, hasMigraine: Bool, takesDrugs: Bool, photo: UIImage?, patientResults: [Float]?) {
