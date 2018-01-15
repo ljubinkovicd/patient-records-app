@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol AddPatientControllerDelegate: class {
     // MARK: - Adding
@@ -28,12 +29,15 @@ class AddPatientController: UITableViewController {
     @IBOutlet weak var dateOfBirthLabel: UILabel!
     @IBOutlet weak var datePickerCell: UITableViewCell!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var patientPhotoImageView: UIImageView!
     
     weak var delegate: AddPatientControllerDelegate?
     
     var patientToEdit: Patient?
     var dateOfBirth = Date()
     var datePickerVisible = false
+    
+    var patientPhotoHeight: CGFloat = 200.0
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,6 +46,11 @@ class AddPatientController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add gesture recognizer to image view
+        let singleFingerTap = UITapGestureRecognizer(target: self, action: #selector(handlePatientImageViewTap))
+        singleFingerTap.numberOfTapsRequired = 1
+        patientPhotoImageView.addGestureRecognizer(singleFingerTap)
         
         if let patient = patientToEdit {
             title = "Edit Patient"
@@ -59,6 +68,8 @@ class AddPatientController: UITableViewController {
             doneBarButton.isEnabled = true
             
             dateOfBirth = patient.dateOfBirth
+            
+            patientPhotoImageView.image = patient.photo ?? UIImage(named: "default")
         }
         
         updateDateOfBirthLabel()
@@ -108,6 +119,39 @@ class AddPatientController: UITableViewController {
         }
     }
     
+    @objc func handlePatientImageViewTap() {
+        chooseImage()
+    }
+    
+    func chooseImage() {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        let actionSheet = UIAlertController(
+            title: "Photo Source",
+            message: "Choose a source",
+            preferredStyle: .actionSheet)
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let actionCamera = UIAlertAction(title: "Camera", style: .default) { (action) in
+                imagePicker.sourceType = .camera
+            }
+            actionSheet.addAction(actionCamera)
+        }
+    
+        let actionPhotoLibrary = UIAlertAction(title: "Photo Library", style: .default) { (action) in
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        actionSheet.addAction(actionPhotoLibrary)
+        
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actionSheet.addAction(actionCancel)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
     func calculateAgeBasedOnDateOfBirth(dateOfBirth: Date) -> Int {
         let currentDate = Date()
         let interval = currentDate.years(from: dateOfBirth)
@@ -139,6 +183,7 @@ class AddPatientController: UITableViewController {
             patient.gender = patientGender
             patient.hasMigraine = hasMigrainesSwitch.isOn
             patient.takesDrugs = takesDrugsSwitch.isOn
+            patient.photo = patientPhotoImageView.image
             
             delegate?.addPatientController(self, didFinishEditing: patient)
             
@@ -156,7 +201,7 @@ class AddPatientController: UITableViewController {
                 patient.gender = patientGender
                 patient.hasMigraine = hasMigrainesSwitch.isOn
                 patient.takesDrugs = takesDrugsSwitch.isOn
-                patient.photo = UIImage(named: "default")
+                patient.photo = patientPhotoImageView.image
                 patient.patientResults = nil
                 
                 delegate?.addPatientController(self, didFinishAdding: patient)
@@ -202,7 +247,7 @@ extension AddPatientController {
     }
 }
 
-// MARK: - Delegate
+// MARK: - Table View Delegates
 extension AddPatientController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -210,6 +255,7 @@ extension AddPatientController {
         tableView.deselectRow(at: indexPath, animated: true)
         patientNameTextField.resignFirstResponder()
         
+        // Date picker row selected
         if indexPath.section == 0 && indexPath.row == 4 {
             
             if !datePickerVisible {
@@ -235,12 +281,63 @@ extension AddPatientController {
             let datePickerHeight: CGFloat = 217.0
             
             return datePickerHeight
-        } else {
-            return super.tableView(tableView, heightForRowAt: indexPath)
         }
+        
+        if indexPath.section == 1 && indexPath.row == 0 {
+            
+            print("PATIENT PHOTO HEIGHT: \(patientPhotoHeight)")
+            
+            return patientPhotoHeight
+        }
+
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
 }
 
+// MARK: - Image Picker Delegate
+extension AddPatientController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+ 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        print("Here is the image info:\n \(info[UIImagePickerControllerOriginalImage] )")
+        
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        guard let cgImage = chosenImage.cgImage else { return }
+        
+        let width = cgImage.width / 6
+        let height = cgImage.height / 6
+        
+        let bitsPerComponent = cgImage.bitsPerComponent
+        let bytesPerRow = cgImage.bytesPerRow
+        let colorSpace = cgImage.colorSpace
+        let bitmapInfo = cgImage.bitmapInfo
+        
+        let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo.rawValue)
+        context?.interpolationQuality = CGInterpolationQuality.high
+        context?.draw(cgImage, in: CGRect(origin: CGPoint.zero, size: CGSize(width: CGFloat(width), height: CGFloat(height))))
+        
+        let scaledImage = context?.makeImage().flatMap { UIImage.init(cgImage: $0) }
+        
+        patientPhotoImageView.contentMode = .scaleAspectFill
+        patientPhotoImageView.image = scaledImage
+        
+        patientPhotoImageView.layer.cornerRadius = 32.0
+        patientPhotoImageView.layer.masksToBounds = true
+        
+        // Refresh the size of the imageView cell
+        patientPhotoHeight = CGFloat(height)
+        tableView.reloadData()
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Text Field Delegate
 extension AddPatientController : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

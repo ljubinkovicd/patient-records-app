@@ -22,10 +22,9 @@ class PatientDetailsController: UIViewController {
     let patientImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "patient")
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 32.0
         imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFit
         
         return imageView
     }()
@@ -121,10 +120,13 @@ class PatientDetailsController: UIViewController {
         containerView.addSubview(toddSyndromeProbabilityLabel)
 
         patientImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 64.0).isActive = true
-        patientImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        patientImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        patientImageView.heightAnchor.constraint(equalTo: patientImageView.widthAnchor, multiplier: 0.5).isActive = true
-        patientImageView.image = (patient.photo != nil) ? patient.photo : UIImage(named: "default")
+        patientImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16.0).isActive = true
+        patientImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16.0).isActive = true
+        
+        if let patientPhoto = patient.photo {
+            patientImageView.image = patientPhoto
+            patientImageView.heightAnchor.constraint(equalToConstant: patientPhoto.size.height).isActive = true
+        }
 
         patientAgeLabel.topAnchor.constraint(equalTo: patientImageView.bottomAnchor, constant: 16.0).isActive = true
         patientAgeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8.0).isActive = true

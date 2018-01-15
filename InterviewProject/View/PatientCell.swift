@@ -24,6 +24,8 @@ class PatientCell: UITableViewCell {
             
             patientNameLabel.text = patient.name
             patientInfoLabel.text = "Age: \(patient.age), Gender: \(patient.gender)"
+            patientImageView.layer.cornerRadius = 32.0
+            patientImageView.layer.masksToBounds = true
             patientImageView.image = patient.photo
         }
     }
